@@ -16,6 +16,7 @@ BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:  cmake(MauiKit)
+BuildRequires:  cmake(exiv2)
 BuildRequires:	cmake(Qt5Qml)
 BuildRequires:	cmake(Qt5Sql)
 BuildRequires:	cmake(Qt5Core)
