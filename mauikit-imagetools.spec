@@ -9,6 +9,7 @@ Release:	1
 Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
 Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/v%{version}/mauikit-imagetools-v%{version}.tar.bz2
+Patch0:   fix-exiv2.patch
 
 License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
 Group:		Applications/Productivity
