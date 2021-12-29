@@ -9,6 +9,7 @@ Release:	1
 Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
 Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/v%{version}/mauikit-imagetools-v%{version}.tar.bz2
+Patch0:		mauikit-imagetools-2.1.0-fix-warnings.patch
 
 License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
 Group:		Applications/Productivity
@@ -106,13 +107,17 @@ widgets shared amoing the other Maui apps.
 %ninja_install -C build
 
 %files
-#{_libdir}/qt5/qml/org/mauikit/filebrowsing
+%{_libdir}/qt5/qml/org/mauikit/imagetools
+%dir %{_datadir}/org/mauikit/imagetools
+%{_datadir}/org/mauikit/imagetools/cities.db
 
 %files -n %{libname}
-#{_libdir}/libMauiKitFileBrowsing.so.1*
-#{_libdir}/libMauiKitFileBrowsing.so.%{major}*
+%{_libdir}/libMauiKitImageTools.so.1*
+%{_libdir}/libMauiKitImageTools.so.%{major}*
 
 %files -n %{devname}
-#{_includedir}/MauiKit/FileBrowsing
-#{_libdir}/cmake/MauiKitFileBrowsing
-#{_libdir}/libMauiKitFileBrowsing.so
+%{_includedir}/MauiKit/ImageTools
+# FIXME this seems odd, but should be fixed upstream
+%{_includedir}/MauiKit/FileBrowsing/imagetools_version.h
+%{_libdir}/cmake/MauiKitImageTools
+%{_libdir}/libMauiKitImageTools.so

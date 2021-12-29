@@ -1,0 +1,18 @@
+diff -up mauikit-imagetools-v2.1.0/src/code/exiv2extractor.cpp.omv~ mauikit-imagetools-v2.1.0/src/code/exiv2extractor.cpp
+diff -up mauikit-imagetools-v2.1.0/src/code/exiv2extractor.h.omv~ mauikit-imagetools-v2.1.0/src/code/exiv2extractor.h
+--- mauikit-imagetools-v2.1.0/src/code/exiv2extractor.h.omv~	2021-12-29 19:13:58.445187983 +0100
++++ mauikit-imagetools-v2.1.0/src/code/exiv2extractor.h	2021-12-29 19:15:06.892018815 +0100
+@@ -59,11 +59,7 @@ private:
+     
+     QUrl m_url;
+        
+-    #if EXIV2_TEST_VERSION(0, 27, 99)
+-    Exiv2::Image::UniquePtr m_image;
+-    #else
+-    Exiv2::Image::AutoPtr m_image;
+-    #endif
++    std::unique_ptr<Exiv2::Image> m_image;
+ 
+     Exiv2::ExifData & exifData() const;
+ };
+diff -up mauikit-imagetools-v2.1.0/src/code/picinfomodel.cpp.omv~ mauikit-imagetools-v2.1.0/src/code/picinfomodel.cpp
