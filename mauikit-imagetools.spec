@@ -1,14 +1,14 @@
 %define major 2
 
-%define libname %mklibname MauiKit-filebrowsing %{major}
-%define devname %mklibname -d MauiKit-filebrowsing
+%define libname %mklibname MauiKit-imagetools %{major}
+%define devname %mklibname -d MauiKit-imagetools
 
-Name:		mauikit-filebrowsing
+Name:		mauikit-imagetools
 Version:	2.1.0
 Release:	1
-Summary:	MauiKit File Browsing utilities and controls
+Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
-Source0:	https://invent.kde.org/maui/mauikit-filebrowsing/-/archive/v%{version}/mauikit-filebrowsing-v%{version}.tar.bz2
+Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/v%{version}/mauikit-imagetools-v%{version}.tar.bz2
 
 License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
 Group:		Applications/Productivity
@@ -64,12 +64,12 @@ It lets you quickly create a Maui application and access utilities and
 widgets shared amoing the other Maui apps.
 
 %package -n %{libname}
-Summary:	Library files for mauikit-filebrowsing
+Summary:	Library files for mauikit-imagetools
 Group:		System/Libraries
 Requires:	%{name} = %{EVRD}
 
 %description -n %{libname}
-Library files for mauikit-filebrowsing
+Library files for mauikit-imagetools
 
 MauiKit is a set of utilities and "templated" controls based on Kirigami and
 QCC2 that follow the ongoing work on the Maui HIG.
@@ -78,12 +78,12 @@ It lets you quickly create a Maui application and access utilities and
 widgets shared amoing the other Maui apps.
 
 %package -n %{devname}
-Summary:	Development files for mauikit-filebrowsing
+Summary:	Development files for mauikit-imagetools
 Group:		Development/KDE and Qt
 Requires:	%{name} = %{EVRD}
 
 %description -n %{devname}
-Development files for mauikit-filebrowsing
+Development files for mauikit-imagetools
 
 MauiKit is a set of utilities and "templated" controls based on Kirigami and
 QCC2 that follow the ongoing work on the Maui HIG.
@@ -103,13 +103,13 @@ widgets shared amoing the other Maui apps.
 %ninja_install -C build
 
 %files
-%{_libdir}/qt5/qml/org/mauikit/filebrowsing
+#{_libdir}/qt5/qml/org/mauikit/filebrowsing
 
 %files -n %{libname}
-%{_libdir}/libMauiKitFileBrowsing.so.1*
-%{_libdir}/libMauiKitFileBrowsing.so.%{major}*
+#{_libdir}/libMauiKitFileBrowsing.so.1*
+#{_libdir}/libMauiKitFileBrowsing.so.%{major}*
 
 %files -n %{devname}
-%{_includedir}/MauiKit/FileBrowsing
-%{_libdir}/cmake/MauiKitFileBrowsing
-%{_libdir}/libMauiKitFileBrowsing.so
+#{_includedir}/MauiKit/FileBrowsing
+#{_libdir}/cmake/MauiKitFileBrowsing
+#{_libdir}/libMauiKitFileBrowsing.so
