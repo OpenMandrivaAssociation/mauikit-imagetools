@@ -17,6 +17,7 @@ BuildRequires:	ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:  cmake(MauiKit)
 BuildRequires:  cmake(exiv2)
+BuildRequires:  cmake(KQuickImageEditor)
 BuildRequires:	cmake(Qt5Qml)
 BuildRequires:	cmake(Qt5Sql)
 BuildRequires:	cmake(Qt5Core)
@@ -53,6 +54,7 @@ BuildRequires:	cmake(Qt5WebEngine)
 BuildRequires:	qt5-qtgraphicaleffects
 BuildRequires:	qt5-qtdeclarative
 BuildRequires:	qt5-qtquickcontrols2
+BuildRequires:  kquickimageeditor
 Requires:	%{libname} = %{EVRD}
 
 %description
