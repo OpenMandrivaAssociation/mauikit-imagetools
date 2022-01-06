@@ -1,14 +1,15 @@
 %define major 2
 
+%define snapshot 20220106
 %define libname %mklibname MauiKit-imagetools %{major}
 %define devname %mklibname -d MauiKit-imagetools
 
 Name:		mauikit-imagetools
-Version:	2.1.0
-Release:	1
+Version:	2.1.1
+Release:	%{?snapshot:0.%{snapshot}.}1
 Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
-Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/v%{version}/mauikit-imagetools-v%{version}.tar.bz2
+Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/%{?snapshot:master/mauikit-imagetools-master.tar.bz2#/mauikit-imagetools-%{snapshot}.tar.bz2}%{!?snapshot:v%{version}/mauikit-imagetools-v%{version}.tar.bz2}
 Patch0:		mauikit-imagetools-2.1.0-fix-warnings.patch
 
 License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
@@ -97,7 +98,7 @@ widgets shared amoing the other Maui apps.
 
 
 %prep
-%autosetup -p1 -n %{name}-v%{version}
+%autosetup -p1 -n %{name}-%{?snapshot:master}%{!?snapshot:v%{version}}
 %cmake_kde5 -G Ninja
 
 %build
@@ -112,7 +113,6 @@ widgets shared amoing the other Maui apps.
 %{_datadir}/org/mauikit/imagetools/cities.db
 
 %files -n %{libname}
-%{_libdir}/libMauiKitImageTools.so.1*
 %{_libdir}/libMauiKitImageTools.so.%{major}*
 
 %files -n %{devname}
