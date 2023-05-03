@@ -19,6 +19,7 @@ BuildRequires:	ninja
 BuildRequires:	cmake(ECM)
 BuildRequires:  cmake(MauiKit)
 BuildRequires:  pkgconfig(exiv2)
+BuildRequires:  cmake(OpenCV)
 BuildRequires:  cmake(KQuickImageEditor)
 BuildRequires:	cmake(Qt5Qml)
 BuildRequires:	cmake(Qt5Sql)
