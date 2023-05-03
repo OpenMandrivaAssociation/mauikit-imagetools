@@ -111,7 +111,9 @@ widgets shared amoing the other Maui apps.
 %install
 %ninja_install -C build
 
-%files
+%find_lang mauikitimagetools
+
+%files -f mauikitimagetools.lang
 %{_libdir}/qt5/qml/org/mauikit/imagetools
 %dir %{_datadir}/org/mauikit/imagetools
 %{_datadir}/org/mauikit/imagetools/cities.db
