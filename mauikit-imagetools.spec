@@ -16,9 +16,11 @@ License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
 Group:		Applications/Productivity
 BuildRequires:	cmake
 BuildRequires:	ninja
+BuildRequires:  pkgconfig(exiv2)
+BuildRequires:  pkgconfig(tesseract)
 BuildRequires:	cmake(ECM)
 BuildRequires:  cmake(MauiKit)
-BuildRequires:  pkgconfig(exiv2)
+BuildRequires:  cmake(Leptonica)
 BuildRequires:  cmake(OpenCV)
 BuildRequires:  cmake(KQuickImageEditor)
 BuildRequires:	cmake(Qt5Qml)
