@@ -1,0 +1,48 @@
+diff -up mauikit-imagetools-v2.2.2/src/code/exiv2extractor.cpp.omv~ mauikit-imagetools-v2.2.2/src/code/exiv2extractor.cpp
+--- mauikit-imagetools-v2.2.2/src/code/exiv2extractor.cpp.omv~	2023-05-18 06:21:51.877437087 +0200
++++ mauikit-imagetools-v2.2.2/src/code/exiv2extractor.cpp	2023-05-18 06:24:43.576441314 +0200
+@@ -233,7 +233,7 @@ QVariant Exiv2Extractor::getExifTagVaria
+                 case Exiv2::signedShort:
+                 case Exiv2::signedLong:
+                     if (it->count() > component)
+-                        return QVariant((int)it->toLong(component));
++                        return QVariant((int)it->toUint32(component));
+                 else
+                     return QVariant(QVariant::Int);
+                 case Exiv2::unsignedRational:
+@@ -711,7 +711,7 @@ bool Exiv2Extractor::writeTag(const char
+                     
+                     qDebug() << "Writting number metadata" << tagName;
+                     
+-                    Exiv2::Value::AutoPtr v = Exiv2::Value::create(Exiv2::signedLongLong);
++                    Exiv2::Value::UniquePtr v = Exiv2::Value::create(Exiv2::signedLongLong);
+                     v->read(value.toString().toStdString());
+                     it->setValue(v.get());
+                     break;
+@@ -724,7 +724,7 @@ bool Exiv2Extractor::writeTag(const char
+                         return false;                
+                                                             qDebug() << "Writting rational metadata" << tagName;
+ 
+-                    Exiv2::RationalValue::AutoPtr rv(new Exiv2::RationalValue);
++                    Exiv2::RationalValue::UniquePtr rv(new Exiv2::RationalValue);
+                     rv->read(value.toString().toStdString());
+                     it->setValue(rv.get());
+                     break;               
+@@ -737,7 +737,7 @@ bool Exiv2Extractor::writeTag(const char
+                         return false;
+                     
+                     auto date = value.toString();
+-                    Exiv2::Value::AutoPtr v = Exiv2::Value::create(Exiv2::asciiString);
++                    Exiv2::Value::UniquePtr v = Exiv2::Value::create(Exiv2::asciiString);
+                     v->read(date.toStdString());
+                     it->setValue(v.get());
+                     break;
+@@ -752,7 +752,7 @@ bool Exiv2Extractor::writeTag(const char
+                     qDebug() << "Writting ascii metadata" << tagName;
+                     
+                     auto string = value.toString();
+-                    Exiv2::Value::AutoPtr v = Exiv2::Value::create(Exiv2::asciiString);
++                    Exiv2::Value::UniquePtr v = Exiv2::Value::create(Exiv2::asciiString);
+                     v->read(string.toStdString());
+                     it->setValue(v.get());
+                     break;
