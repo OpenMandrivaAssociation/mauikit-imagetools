@@ -6,7 +6,7 @@
 %define devname %mklibname -d MauiKit-imagetools
 
 Name:		mauikit-imagetools
-Version:	3.0.3
+Version:	3.0.2
 Release:	%{?snapshot:0.%{snapshot}.}1
 Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
