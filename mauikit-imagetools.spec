@@ -1,18 +1,19 @@
 %define major 3
 
 #define snapshot 20220106
-%define libname %mklibname MauiKit-imagetools %{major}
+%define libname %mklibname MauiKit-imagetools
+%define oldlibname %mklibname MauiKit-imagetools 3
 %define devname %mklibname -d MauiKit-imagetools
 
 Name:		mauikit-imagetools
-Version:	3.0.0
+Version:	3.0.2
 Release:	%{?snapshot:0.%{snapshot}.}1
 Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		http://mauikit.org/
 Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/%{?snapshot:master/mauikit-imagetools-master.tar.bz2#/mauikit-imagetools-%{snapshot}.tar.bz2}%{!?snapshot:v%{version}/mauikit-imagetools-v%{version}.tar.bz2}
 Patch0:		mauikit-imagetools-2.1.0-fix-warnings.patch
 Patch1:		leptonica-1.83.patch
-Patch2:		mauikit-imagetools-exiv2-0.28.patch
+#Patch2:		mauikit-imagetools-exiv2-0.28.patch
 
 License:	LGPL-2.1-or-later, CC0 1.0, BSD-2-Clause
 Group:		Applications/Productivity
@@ -21,7 +22,7 @@ BuildRequires:	ninja
 BuildRequires:  pkgconfig(exiv2)
 BuildRequires:  pkgconfig(tesseract)
 BuildRequires:	cmake(ECM)
-BuildRequires:  cmake(MauiKit)
+BuildRequires:  cmake(MauiKit3)
 BuildRequires:  cmake(Leptonica)
 BuildRequires:  cmake(OpenCV)
 BuildRequires:  cmake(KQuickImageEditor)
@@ -76,6 +77,7 @@ widgets shared amoing the other Maui apps.
 %package -n %{libname}
 Summary:	Library files for mauikit-imagetools
 Group:		System/Libraries
+%rename %{oldlibname}
 Requires:	%{name} = %{EVRD}
 
 %description -n %{libname}
@@ -120,11 +122,11 @@ widgets shared amoing the other Maui apps.
 %{_datadir}/org/mauikit/imagetools/cities.db
 
 %files -n %{libname}
-%{_libdir}/libMauiKitImageTools.so.%{major}*
+%{_libdir}/libMauiKitImageTools3.so.%{major}*
 
 %files -n %{devname}
-%{_includedir}/MauiKit/ImageTools
+%{_includedir}/MauiKit3/ImageTools
 # FIXME this seems odd, but should be fixed upstream
-%{_includedir}/MauiKit/FileBrowsing/imagetools_version.h
-%{_libdir}/cmake/MauiKitImageTools
-%{_libdir}/libMauiKitImageTools.so
+%{_includedir}/MauiKit3/FileBrowsing/imagetools_version.h
+%{_libdir}/cmake/MauiKitImageTools3
+%{_libdir}/libMauiKitImageTools3.so
