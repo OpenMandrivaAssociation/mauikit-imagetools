@@ -125,7 +125,7 @@ widgets shared amoing the other Maui apps.
 %{_libdir}/libMauiKitImageTools3.so.%{major}*
 
 %files -n %{devname}
-%{_includedir}/MauiKit/ImageTools
+%{_includedir}/MauiKit3/ImageTools
 # FIXME this seems odd, but should be fixed upstream
 %{_includedir}/MauiKit3/FileBrowsing/imagetools_version.h
 %{_libdir}/cmake/MauiKitImageTools3
