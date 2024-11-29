@@ -1,4 +1,4 @@
-%define major 3
+%define major 4
 
 #define snapshot 20220106
 %define libname %mklibname MauiKit-imagetools
