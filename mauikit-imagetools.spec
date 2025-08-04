@@ -132,3 +132,4 @@ widgets shared amoing the other Maui apps.
 %{_includedir}/MauiKit4/FileBrowsing/imagetools_version.h
 %{_libdir}/cmake/MauiKitImageTools4
 %{_libdir}/libMauiKitImageTools4.so
+%{_libdir}/libMauiKitImageToolsEditor4.so
