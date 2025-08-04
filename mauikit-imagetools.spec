@@ -50,6 +50,7 @@ BuildRequires:	cmake(KF6Declarative)
 #BuildRequires:	cmake(KF5PlasmaQuick)
 BuildRequires:	cmake(Qt6Widgets)
 BuildRequires:	cmake(KF6WindowSystem)
+BuildRequires:  cmake(KExiv2Qt6)
 BuildRequires:	cmake(Git)
 BuildRequires:	cmake(KF6SyntaxHighlighting)
 BuildRequires:	cmake(KF6Attica)
@@ -59,6 +60,7 @@ BuildRequires:	cmake(Qt6Network)
 BuildRequires:	cmake(Qt6Xml)
 BuildRequires:	cmake(Qt6Test)
 BuildRequires:	cmake(Qt6WebEngineCore)
+BuildRequires:  cmake(VulkanHeaders)
 #BuildRequires:	qt5-qtgraphicaleffects
 #BuildRequires:	qt5-qtdeclarative
 #BuildRequires:	qt5-qtquickcontrols2
