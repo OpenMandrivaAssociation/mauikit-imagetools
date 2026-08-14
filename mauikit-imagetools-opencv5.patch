@@ -1,6 +1,6 @@
-diff -ruN a/src/code/moduleinfo.cpp mauikit-imagetools/src/code/moduleinfo.cpp
+diff -ruN a/src/code/moduleinfo.cpp /tmp/maui-src/src/code/moduleinfo.cpp
 --- a/src/code/moduleinfo.cpp	2025-05-22 05:45:28.000000000 +0200
-+++ b/src/code/moduleinfo.cpp	2026-08-14 19:24:42.920596242 +0200
++++ b/src/code/moduleinfo.cpp	2026-08-15 01:30:39.230309849 +0200
 @@ -5,7 +5,7 @@
  
  #ifndef Q_OS_ANDROID
@@ -10,9 +10,9 @@ diff -ruN a/src/code/moduleinfo.cpp mauikit-imagetools/src/code/moduleinfo.cpp
  #endif
  
  QString MauiKitImageTools::versionString()
-diff -ruN a/src/code/modules/opencv/code/cvmatandqimage.cpp mauikit-imagetools/src/code/modules/opencv/code/cvmatandqimage.cpp
+diff -ruN a/src/code/modules/opencv/code/cvmatandqimage.cpp /tmp/maui-src/src/code/modules/opencv/code/cvmatandqimage.cpp
 --- a/src/code/modules/opencv/code/cvmatandqimage.cpp	2025-05-22 05:45:28.000000000 +0200
-+++ b/src/code/modules/opencv/code/cvmatandqimage.cpp	2026-08-14 19:24:42.921981089 +0200
++++ b/src/code/modules/opencv/code/cvmatandqimage.cpp	2026-08-15 01:30:39.230369540 +0200
 @@ -267,7 +267,7 @@
  #else
          format = QImage::Format_RGB32;
@@ -22,3 +22,76 @@ diff -ruN a/src/code/modules/opencv/code/cvmatandqimage.cpp mauikit-imagetools/s
  #if Q_BYTE_ORDER == Q_LITTLE_ENDIAN
          mat_adjustCn = mat_tmp;
  #else
+diff -ruN a/src/code/modules/opencv/code/mycroplayer.cpp /tmp/maui-src/src/code/modules/opencv/code/mycroplayer.cpp
+--- a/src/code/modules/opencv/code/mycroplayer.cpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/modules/opencv/code/mycroplayer.cpp	2026-08-15 01:30:57.281242682 +0200
+@@ -35,14 +35,14 @@
+     return cv::Ptr<Layer>(new MyCropLayer(params));
+ }
+ 
+-bool MyCropLayer::getMemoryShapes(const std::vector<std::vector<int>> &inputs,
++bool MyCropLayer::getMemoryShapes(const std::vector<cv::MatShape> &inputs,
+                                   const int requiredOutputs,
+-                                  std::vector<std::vector<int>> &outputs,
+-                                  std::vector<std::vector<int>> &internals) const
++                                  std::vector<cv::MatShape> &outputs,
++                                  std::vector<cv::MatShape> &internals) const
+ {
+     CV_UNUSED(requiredOutputs);
+     CV_UNUSED(internals);
+-    std::vector<int> outShape(4);
++    cv::MatShape outShape(4);
+     outShape[0] = inputs[0][0]; // batch size
+     outShape[1] = inputs[0][1]; // number of channels
+     outShape[2] = inputs[1][2];
+diff -ruN a/src/code/modules/opencv/code/mycroplayer.hpp /tmp/maui-src/src/code/modules/opencv/code/mycroplayer.hpp
+--- a/src/code/modules/opencv/code/mycroplayer.hpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/modules/opencv/code/mycroplayer.hpp	2026-08-15 01:30:57.281242682 +0200
+@@ -42,10 +42,10 @@
+ public:
+     explicit MyCropLayer(const cv::dnn::LayerParams &params);
+     static cv::Ptr<Layer> create(cv::dnn::LayerParams &params);
+-    virtual bool getMemoryShapes(const std::vector<std::vector<int>> &inputs,
++    virtual bool getMemoryShapes(const std::vector<cv::MatShape> &inputs,
+                                  const int requiredOutputs,
+-                                 std::vector<std::vector<int>> &outputs,
+-                                 std::vector<std::vector<int>> &internals) const CV_OVERRIDE;
++                                 std::vector<cv::MatShape> &outputs,
++                                 std::vector<cv::MatShape> &internals) const CV_OVERRIDE;
+     virtual void forward(std::vector<cv::Mat *> &input,
+                          std::vector<cv::Mat> &output,
+                          std::vector<cv::Mat> &internals) CV_OVERRIDE;
+diff -ruN a/src/code/modules/opencv/code/preprocessimage.cpp /tmp/maui-src/src/code/modules/opencv/code/preprocessimage.cpp
+--- a/src/code/modules/opencv/code/preprocessimage.cpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/modules/opencv/code/preprocessimage.cpp	2026-08-15 01:30:57.296200861 +0200
+@@ -96,8 +96,8 @@
+ bool PreprocessImage::compareContourAreas(std::vector<cv::Point> &contour1,
+                                           std::vector<cv::Point> &contour2)
+ {
+-    double i = fabs(contourArea(cv::Mat(contour1)));
+-    double j = fabs(contourArea(cv::Mat(contour2)));
++    double i = fabs(cv::contourArea(cv::Mat(contour1)));
++    double j = fabs(cv::contourArea(cv::Mat(contour2)));
+     return (i > j);
+ }
+ 
+@@ -178,7 +178,7 @@
+             cv::Point(static_cast<int>(mw) - 1, 0),
+             cv::Point(static_cast<int>(mw) - 1, static_cast<int>(mh) - 1),
+             cv::Point(0, static_cast<int>(mh) - 1)};
+-    cv::Mat m = getPerspectiveTransform(src_, dst_);
++    cv::Mat m = cv::getPerspectiveTransform(src_, dst_);
+     cv::warpPerspective(src, dst, m, cv::Size(static_cast<int>(mw), static_cast<int>(mh)));
+ }
+ 
+diff -ruN a/src/code/modules/opencv/code/preprocessimage.hpp /tmp/maui-src/src/code/modules/opencv/code/preprocessimage.hpp
+--- a/src/code/modules/opencv/code/preprocessimage.hpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/modules/opencv/code/preprocessimage.hpp	2026-08-15 01:30:57.281242682 +0200
+@@ -31,6 +31,7 @@
+ #include "mycroplayer.hpp"
+ #include <opencv2/core/core.hpp>
+ #include <opencv2/imgproc.hpp>
++#include <opencv2/geometry.hpp>
+ #include <vector>
+ 
+ #include "opencvlib_export.h"
