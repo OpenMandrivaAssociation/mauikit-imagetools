@@ -1,0 +1,24 @@
+diff -ruN a/src/code/moduleinfo.cpp mauikit-imagetools/src/code/moduleinfo.cpp
+--- a/src/code/moduleinfo.cpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/moduleinfo.cpp	2026-08-14 19:24:42.920596242 +0200
+@@ -5,7 +5,7 @@
+ 
+ #ifndef Q_OS_ANDROID
+ #include "ocs.h"
+-#include <opencv4/opencv2/core/version.hpp>
++#include <opencv2/core/version.hpp>
+ #endif
+ 
+ QString MauiKitImageTools::versionString()
+diff -ruN a/src/code/modules/opencv/code/cvmatandqimage.cpp mauikit-imagetools/src/code/modules/opencv/code/cvmatandqimage.cpp
+--- a/src/code/modules/opencv/code/cvmatandqimage.cpp	2025-05-22 05:45:28.000000000 +0200
++++ b/src/code/modules/opencv/code/cvmatandqimage.cpp	2026-08-14 19:24:42.921981089 +0200
+@@ -267,7 +267,7 @@
+ #else
+         format = QImage::Format_RGB32;
+         cv::Mat mat_tmp;
+-        cv::cvtColor(mat, mat_tmp, order == MCO_BGR ? CV_BGR2BGRA : CV_RGB2BGRA);
++        cv::cvtColor(mat, mat_tmp, order == MCO_BGR ? cv::COLOR_BGR2BGRA : cv::COLOR_RGB2BGRA);
+ #if Q_BYTE_ORDER == Q_LITTLE_ENDIAN
+         mat_adjustCn = mat_tmp;
+ #else
