@@ -8,7 +8,7 @@
 Name:		mauikit-imagetools
 Version:	4.0.2
 Release:	%{?snapshot:0.%{snapshot}.}2
-Summary:	MauiKit QtQuick image editing components
+Summary:	MauiKit ImageTools is a set of QtQuick components providing basic image editing capabilities.
 Url:		https://mauikit.org/
 Source0:	https://invent.kde.org/maui/mauikit-imagetools/-/archive/%{?snapshot:master/mauikit-imagetools-master.tar.bz2#/mauikit-imagetools-%{snapshot}.tar.bz2}%{!?snapshot:v%{version}/mauikit-imagetools-v%{version}.tar.bz2}
 #Patch0:		mauikit-imagetools-2.1.0-fix-warnings.patch
@@ -134,6 +134,3 @@ widgets shared amoing the other Maui apps.
 %{_libdir}/cmake/MauiKitImageTools4
 %{_libdir}/libMauiKitImageTools4.so
 %{_libdir}/libMauiKitImageToolsEditor4.so
-
-# keep %mklibname visible for rpmlint SpecCheck (checks last line only)
-# %mklibname
