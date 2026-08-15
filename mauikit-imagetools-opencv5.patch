@@ -6,7 +6,7 @@ diff -ruN a/src/code/moduleinfo.cpp /tmp/maui-src/src/code/moduleinfo.cpp
  #ifndef Q_OS_ANDROID
  #include "ocs.h"
 -#include <opencv4/opencv2/core/version.hpp>
-+#include <opencv2/core/version.hpp>
++#include <opencv5/opencv2/core/version.hpp>
  #endif
  
  QString MauiKitImageTools::versionString()
